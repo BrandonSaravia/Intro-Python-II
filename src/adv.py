@@ -1,5 +1,7 @@
 from room import Room
+from player import Player
 
+import sys
 # Declare all the rooms
 
 room = {
@@ -36,6 +38,52 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+if __name__ == "__main__":
+    print()
+
+    done = False
+    
+    name = input("Enter Name (or exit): ")
+
+    newPlayer = Player(name, room['outside'])
+
+    
+
+    if name == "exit":
+        done = True
+
+    def go_direction(dir, current_room):
+        attribute = dir+'_to'
+        if hasattr(current_room, attribute):
+            # print(current_room.__str__())
+            print(getattr(current_room, attribute))
+            return getattr(current_room, attribute)
+        else:
+            print()
+            print()
+            print(newPlayer.__str__())
+            print()
+            print('\"You may not go this way!\"')
+            
+            return current_room
+
+
+
+    while not done:
+        
+        
+
+        print()
+        print("Enter Key: n, s, e, or w to move.")
+        
+        dir = input("Which Path will you take: ")
+
+        
+         
+        newPlayer.current_room = go_direction( dir, newPlayer.current_room)    
+        
+
+        continue  
 
 # Make a new player object that is currently in the 'outside' room.
 
